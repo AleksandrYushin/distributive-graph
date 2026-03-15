@@ -1,0 +1,182 @@
+<script src="./scripts/cytoscape.min.js"></script>
+<script src="cytoscape-node-html-label.js"></script>
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Distributive graph</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ===== HEADER ===== */
+    header {
+      padding: 10px 20px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .title {
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .controls label {
+      font-size: 14px;
+    }
+
+    .controls input[type="number"] {
+      width: 80px;
+    }
+
+    .flag-buttons button {
+      background-color: #b0d3b1;
+      border: 1px solid black;
+      border-radius: 4px;
+      padding: 4px 8px;
+      font-size: 12px;
+    }
+    
+    .flag-buttons button.active {
+      background-color: #c07a76;
+    }
+
+    .action-buttons button {
+      padding: 8px 16px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .legend {
+      margin-left: auto;
+      display: flex;
+      gap: 15px;
+      font-size: 12px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .node-sample {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: steelblue;
+    }
+
+    .edge-sample {
+      width: 20px;
+      height: 2px;
+      background: black;
+    }
+
+    .edge-sample.type2 {
+      background: red;
+      border-top: 2px dashed red;
+    }
+
+    /* ===== GRAPH AREA ===== */
+    #graph-container {
+      flex: 1;
+      background: #f9f9f9;
+      border-top: 1px solid #ddd;
+      border-bottom: 1px solid #ddd;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      height: 30px;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      padding: 0 10px;
+    }
+
+    footer span {
+      margin-left: auto;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="title">Distributive graph</div>
+
+    <div class="controls">
+      <label>
+        maxN:
+        <input type="number" min="1" value="4" max="8" >
+      </label>
+
+      <div class="flag-buttons">
+        <button>Semigroup (full)</button>
+        <button class="active">Semigroup (no in SR)</button>
+        <button class="active">Semigroup (no in R)</button>
+        <button class="active">Dist. link (no SR)</button>
+        <button class="active">Semiring</button>
+        <button>Ring</button>
+      </div>
+
+      <div class="action-buttons">
+        <button id="recalculation-button">Recalculation</button>
+        <button id="reset-button">Reset</button>
+        <button id="contraction-button">Сontraction</button>
+      </div>
+
+      <div class="legend" style="display: flex; align-items: center; gap: 10px;">
+        <div style="font-weight: bold; font-size: 14px">Legend:</div>
+        <div id="legend-graph" style="width: 300px; height: 100px; border: 1px solid #ccc;"></div>
+      </div>
+    </div>
+  </header>
+
+  <div id="graph-container">
+    <!-- Здесь будет Cytoscape -->
+  </div>
+
+  <div id="tooltip" style="
+    position: absolute;
+    display: none;
+    background: white;
+    border: 1px solid #333;
+    padding: 20px;
+    font-size: 12px;
+    z-index: 9999;
+    pointer-events: none;
+    left: 10px;
+    bottom: 10px;">
+  </div>
+
+  <footer>
+    <span>Author: Yu Sasha</span>
+  </footer>
+
+</body>
+</html>
+
+<script src="./scripts/reset_button.js"></script>
+<script src="./scripts/style.js"></script>
+<script src="./scripts/layout.js"></script>
+<script src="./scripts/contraction_button.js"></script>
+<script src="./scripts/information.js"></script>
+<script src="./scripts/legendGraph.js"></script>
+<script src="./scripts/flags.js"></script>
